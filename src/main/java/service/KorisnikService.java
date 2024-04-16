@@ -21,7 +21,7 @@ public class KorisnikService {
 		List<Korisnik> korisnici = getAllKorisnik();
 		
 		if(korisnici.contains(k)) {
-			throw new KorisnikException("Student vec postoji!");
+			throw new KorisnikException("Korisnik vec postoji!");
 		}
 		
 		return em.merge(k);
@@ -30,5 +30,28 @@ public class KorisnikService {
 	@Transactional
 	public List<Korisnik> getAllKorisnik(){
 		return em.createNamedQuery(Korisnik.GET_ALL_KORISNIK, Korisnik.class).getResultList();
+	}
+	
+	@Transactional
+	public Korisnik getKorisnikById(Long id) {
+	    return em.find(Korisnik.class, id);
+	}
+
+	@Transactional
+	public Korisnik updateKorisnik(Korisnik k) throws KorisnikException {
+	    Korisnik existingKorisnik = em.find(Korisnik.class, k.getId());
+	    if (existingKorisnik == null) {
+	        throw new KorisnikException("Korisnik ne postoji!");
+	    }
+	    return em.merge(k);
+	}
+
+	@Transactional
+	public void deleteKorisnik(Long id) throws KorisnikException {
+	    Korisnik korisnik = em.find(Korisnik.class, id);
+	    if (korisnik == null) {
+	        throw new KorisnikException("Korisnik ne postoji!");
+	    }
+	    em.remove(korisnik);
 	}
 }
