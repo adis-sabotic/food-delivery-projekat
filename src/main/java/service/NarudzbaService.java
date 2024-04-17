@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import enums.NarudzbaStatus;
 import excp.KorisnikException;
 import excp.NarudzbaException;
 import jakarta.enterprise.context.Dependent;
@@ -22,7 +23,7 @@ public class NarudzbaService {
         List<Narudzba> narudzbe = getAllNarudzba();
 
         if(narudzbe.contains(narudzba)) {
-			throw new NarudzbaException("Korisnik vec postoji!");
+			throw new NarudzbaException(NarudzbaStatus.EXISTS.getLabel());
 		}
         
         return em.merge(narudzba);
