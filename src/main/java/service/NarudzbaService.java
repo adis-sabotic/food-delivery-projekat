@@ -21,7 +21,7 @@ public class NarudzbaService {
     public Narudzba createNarudzba(Narudzba narudzba) throws NarudzbaException {
 
         List<Narudzba> narudzbe = getAllNarudzba();
-
+        
         if(narudzbe.contains(narudzba)) {
 			throw new NarudzbaException(NarudzbaStatus.EXISTS.getLabel());
 		}

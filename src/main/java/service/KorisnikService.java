@@ -34,13 +34,13 @@ public class KorisnikService {
 
 	@Transactional
 	public List<Korisnik> getAllKorisnik() {
-		List <Korisnik> korisnici = em.createNamedQuery(Korisnik.GET_ALL_KORISNIK, Korisnik.class).getResultList();
+		List<Korisnik> korisnici = em.createNamedQuery(Korisnik.GET_ALL_KORISNIK, Korisnik.class).getResultList();
 
 //		for (Korisnik korisnik : korisnici) {
 //			List<Telefon> telefoni = getAllForKorisnik(korisnik);
 //			korisnik.setTelefoni
 //		}
-		
+
 		return korisnici;
 	}
 

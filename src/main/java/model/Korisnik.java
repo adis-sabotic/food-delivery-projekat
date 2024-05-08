@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
@@ -33,9 +35,12 @@ public class Korisnik {
 	@JoinColumn(name = "korisnik_id")
 	private Set<Telefon> telefoni;
 
+	@OneToMany(mappedBy = "korisnik")
+	private Set<Narudzba> narudzbe;
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private IPLog iplog;
-	
+
 	public IPLog getIplog() {
 		return iplog;
 	}

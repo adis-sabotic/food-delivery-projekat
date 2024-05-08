@@ -48,7 +48,7 @@ public class KorisnikRest {
 	@GET
 	@Path("/getAllKorisnik")
 	@jakarta.ws.rs.Produces(MediaType.APPLICATION_JSON)
-	public Response getAllKorisnik(Korisnik korisnik) {
+	public Response getAllKorisnik() {
 		List<Korisnik> korisnici = korisnikService.getAllKorisnik();
 		return Response.ok().entity(korisnici).build();
 	}
