@@ -28,9 +28,6 @@ public class Dostavljac {
     private String name;
     private String surname;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Telefon> telefoni;
-
 	@OneToMany(mappedBy = "dostavljac")
 	private Set<Narudzba> narudzbe;
 	
@@ -57,13 +54,5 @@ public class Dostavljac {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public Set<Telefon> getTelefoni() {
-        return telefoni;
-    }
-
-    public void setTelefoni(Set<Telefon> telefoni) {
-        this.telefoni = telefoni;
     }
 }

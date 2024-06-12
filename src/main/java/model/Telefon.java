@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +13,6 @@ import jakarta.persistence.NamedQuery;
 @Entity
 @NamedQueries({
     @NamedQuery(name = Telefon.GET_ALL_FOR_KORISNIK, query = "SELECT t FROM Telefon t WHERE t.korisnik.id = :id"),
-    @NamedQuery(name = Telefon.GET_ALL_FOR_DOSTAVLJAC, query = "SELECT t FROM Telefon t WHERE t.dostavljac.id = :id")
 })
 public class Telefon {
 
@@ -20,13 +21,10 @@ public class Telefon {
     private Long id;
 
     public static final String GET_ALL_FOR_KORISNIK = "getAllForKorisnik";
-    public static final String GET_ALL_FOR_DOSTAVLJAC = "getAllForDostavljac";
 
     @ManyToOne
+    @JsonIgnore
     private Korisnik korisnik;
-
-    @ManyToOne
-    private Dostavljac dostavljac;
 
     private String broj;
 
@@ -50,13 +48,6 @@ public class Telefon {
         this.korisnik = korisnik;
     }
 
-    public Dostavljac getDostavljac() {
-        return dostavljac;
-    }
-
-    public void setDostavljac(Dostavljac dostavljac) {
-        this.dostavljac = dostavljac;
-    }
 
     public String getBroj() {
         return broj;

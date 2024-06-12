@@ -33,6 +33,20 @@ public class KorisnikService {
 	}
 
 	@Transactional
+	public List<Korisnik> getKorisnikByName(String name) {
+		List<Korisnik> korisnici = em.createNamedQuery(Korisnik.GET_KORISNICI_BY_NAME, Korisnik.class)
+				.setParameter("name", name).getResultList();
+
+//        for (Korisnik korisnik : korisnici) {
+//            List<Telefon> telefoni = getAllForKorisnik(korisnik);
+//            korisnik.setTelefoni(new HashSet<>(telefoni));
+//        }
+
+		return korisnici;
+
+	}
+
+	@Transactional
 	public List<Korisnik> getAllKorisnik() {
 		List<Korisnik> korisnici = em.createNamedQuery(Korisnik.GET_ALL_KORISNIK, Korisnik.class).getResultList();
 
